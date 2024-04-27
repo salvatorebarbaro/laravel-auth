@@ -28,7 +28,8 @@ class StoreProjectRequest extends FormRequest
         ];
     }
     public function messages()
-    {[
+    {
+        return[
        'title.required' => 'Necessito del titolo per continuare',
         'title.max' => 'massimi caratteri consentiti sono :max', 
     ];
