@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Project;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
@@ -45,6 +46,19 @@ class ProjectController extends Controller
         $Project->validated();
         // Creazione di un nuovo progetto
         $NewProject = new Project();
+
+        //controlliamo se nella request abbiamo un elemento di tipo file
+        if($Project->hasFile('img_path')){
+            //ci stiamo salvando il percorso dell'immagine
+            // se non ho la cartella project_images mi verra creata
+            $path = Storage::disk('public')->put('project_images', $Project->img_path);
+
+            // salvo il nuovo percorso che ho ottenuto dal salvataggio dell'immagine (Laravel per privacy e sicurezza cambia il nome del file)
+            $NewProject->img_path= $path;
+        }
+
+
+
         // abbiamo riempito i campi del progetto con gli elementi salvati nel model $fillable
         $NewProject->fill($Project->all());
         //abbiamo salvato
@@ -80,6 +94,16 @@ class ProjectController extends Controller
         
         // andiamo ad inseirre tutti i dati inseirti dall'utente nel nostro progetto
         $project->fill($request->all());
+
+        //controlliamo se nella request abbiamo un elemento di tipo file
+        if($request->hasFile('img_path')){
+            //ci stiamo salvando il percorso dell'immagine
+            // se non ho la cartella project_images mi verra creata
+            $path = Storage::disk('public')->put('project_images', $request->img_path);
+
+            // salvo il nuovo percorso che ho ottenuto dal salvataggio dell'immagine (Laravel per privacy e sicurezza cambia il nome del file)
+            $project->img_path= $path;
+        }
 
         $project->save();
         

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Project extends Model
 {
@@ -13,6 +14,10 @@ class Project extends Model
     protected $fillable = [
         'title',
         'description',
-        'img_path',
+        // 'img_path',
+        'LinkGit',
+        'Tecnology'
+
     ];
+    use SoftDeletes;
 }

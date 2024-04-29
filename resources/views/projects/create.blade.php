@@ -4,7 +4,8 @@
 <div class="container">
     <div class="row justify-content-center ">
         <div class="col-8 my-5">
-            <form action="{{ route ('admin.projects.store') }}" method="POST">
+            <!-- enctype="multipart/form-data" comando usato per poter caricare un file -->
+            <form action="{{ route ('admin.projects.store') }}" method="POST" enctype="multipart/form-data">
                 
             @csrf
 
@@ -45,8 +46,15 @@
                 <div class="mb-3">
                     <label for="img_path" class="form-label text-uppercase ">link immagine del progetto</label>
                     <!-- name campo da inserire perchè ci facilità la gestione del campo come per esempio in questo caso il nome -->
-                    <input type="url" class="form-control" id="img_path" name="img_path"  value="{{ old (' img_path' )}}">
+                    <input type="file" class="form-control" id="img_path" name="img_path"  value="{{ old (' img_path' )}}">
                 </div>
+
+
+                <div class="mb-3">
+                    <label for="LinkGit" class="form-label">Link Repo GitHub</label>
+                    <input type="text" class="form-control" id="LinkGit" name="LinkGit" value="{{ old('LinkGit') }}" placeholder="Inserisci il link della repo di github">
+                </div>
+
                 
                 
                 <button type="submit" class="btn btn-primary">Submit</button>

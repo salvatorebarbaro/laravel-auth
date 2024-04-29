@@ -8,11 +8,14 @@
             <h1 class="text-center mb-4">{{$project->title}}</h1>
         
         <div class="col">
-            <img class=" img-fluid w-100  " src="{{$project->img_path}}" alt="">
+            
+            <img src="{{ asset('storage/'. $project->img_path)}}" class="img-fluid w-100 " alt="{{$project->title}}">
         </div>
         <p class="text-center my-3"><span class="text-uppercase fs-5">Descrizione:</span>{{$project->description}}</p>
+        <span>{{$project->Tecnology}}</span>
+        <span>{{$project->LinkGit}}</span>
         <div class="col-auto my-5 d-flex  gap-5">
-            
+            <a href="{{route('admin.projects.index')}}" type="button" class="btn btn-primary text-uppercase ">torna indietro</a href="">
             <a href="{{route('admin.projects.edit', $project)}}" type="button" class="btn btn-warning text-uppercase ">modifica</a href="">
             <a href="" type="button" data-bs-toggle="modal" data-bs-target="#deleteModal" class="btn btn-danger text-uppercase ">elimina</a href="">
         </div>
@@ -46,6 +49,7 @@
         </form>
         <a href="{{ route('admin.projects.show', $project->id) }}" type="button" class="btn btn-success">Annulla</a>
         <!-- fine gestione -->
+
       </div>
     </div>
   </div>

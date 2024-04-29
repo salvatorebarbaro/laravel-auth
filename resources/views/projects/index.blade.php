@@ -9,7 +9,7 @@
     @foreach($projects as $project)
         <div class="col mb-4 text-center ">
             <div class="card h-100">
-                <img src="{{$project->img_path}}" class="card-img-top" alt="{{$project->title}}">
+                <img src="{{ asset('storage/'. $project->img_path)}}" class="card-img-top img-fluid h-100 " alt="{{$project->title}}">
                 <div class="card-body">
                     <h5 class="card-title">{{$project->title}}</h5>
                     <a href="{{ route('admin.projects.show', $project->id) }}" class="btn btn-primary">Visita</a>

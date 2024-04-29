@@ -5,7 +5,7 @@
     <div class="row justify-content-center ">
         <div class="col-8 my-5">
             <!-- alla rotta "aggiorna noi passiamo l'id del nostro progetto" -->
-            <form action="{{ route ('admin.projects.update' ,['project'=> $project->id]) }}" method="POST">
+            <form action="{{ route ('admin.projects.update' ,['project'=> $project->id]) }}" method="POST" enctype="multipart/form-data">
                 
             @csrf
 
@@ -48,7 +48,11 @@
                 <div class="mb-3">
                     <label for="img_path" class="form-label text-uppercase ">link immagine del progetto</label>
                     <!-- name campo da inserire perchè ci facilità la gestione del campo come per esempio in questo caso il nome -->
-                    <input type="url" class="form-control" id="img_path" name="img_path"  value="{{ old ('img_path' ) ? old ('img_path') : $project->img_path }}">
+                    <input type="file" class="form-control" id="img_path" name="img_path"  value="{{ old ('img_path' ) ? old ('img_path') : $project->img_path }}">
+                </div>
+                <div class="mb-3">
+                    <label for="LinkGit" class="form-label">Link Repo GitHub</label>
+                    <input type="text" class="form-control" id="LinkGit" name="LinkGit" value="{{ old('LinkGit') ? old('LinkGit') : $project->LinkGit  }}" placeholder="Inserisci il link della repo di github">
                 </div>
                 
                 

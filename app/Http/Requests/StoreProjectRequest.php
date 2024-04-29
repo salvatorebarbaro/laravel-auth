@@ -24,15 +24,20 @@ class StoreProjectRequest extends FormRequest
         return [
 
             'title' =>'required|max:80',
-            'description' => 'nullable',
-            'image_link' => 'nullable',
+            'description' => 'required',
+            'image_link' => 'file|max:1024|nullable|mimes:jpg,bmp,png',
         ];
     }
     public function messages()
     {
         return[
        'title.required' => 'Necessito del titolo per continuare',
-        'title.max' => 'massimi caratteri consentiti sono :max', 
+       'title.unique' => 'Titolo gia stato utilizzato',
+        'title.max' => 'massimi caratteri consentiti sono :max',
+        'description.required' => 'Necessito della descrizione per continuare',
+        'image_link.mimes' => "Il file deve essere un'immagine",
+        'image_link.max' => "La dimensione del file non deve superare i 1024 KB",
+
     ];
         
         
